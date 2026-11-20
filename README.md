@@ -1,6 +1,6 @@
 # XOR Shellcode Encoder
 
-A lightweight Python 3 command-line utility for applying a repeating XOR key to binary files.
+A lightweight Python 3 command-line utility for applying a repeating XOR key to binary files. Output is saved as a raw binary file, python bytearray or C-style array.
 
 Supports UTF-8 string keys and hexadecimal keys, with three output formats:
 
@@ -20,13 +20,13 @@ Input data is processed in chunks rather than loaded entirely into memory, makin
 ## Usage
 
 ```bash
-python main.py -k KEY -i INPUT -o OUTPUT -f FORMAT
+python xorcrypter.py -k KEY -i INPUT -o OUTPUT -f FORMAT
 ```
 
 Alternatively, supply a hexadecimal key:
 
 ```bash
-python main.py -x HEX_KEY -i INPUT -o OUTPUT -f FORMAT
+python xorcrypter.py -x HEX_KEY -i INPUT -o OUTPUT -f FORMAT
 ```
 
 ### Arguments
@@ -49,7 +49,7 @@ python main.py -x HEX_KEY -i INPUT -o OUTPUT -f FORMAT
 Use `--key` to supply a normal string.
 
 ```bash
-python main.py \
+python xorcrypter.py \
     --key "sup3rSecret" \
     --input payload.bin \
     --output encrypted.bin \
@@ -70,7 +70,7 @@ UTF-8 bytes:   41 42 43
 Use `--key-hex` when you want to supply the key directly as hexadecimal bytes.
 
 ```bash
-python main.py \
+python xorcrypter.py \
     --key-hex "deadbeef" \
     --input payload.bin \
     --output encrypted.bin \
@@ -103,7 +103,7 @@ Hexadecimal keys must contain a non-zero, even number of hexadecimal digits.
 Writes the transformed bytes directly to an output file.
 
 ```bash
-python main.py \
+python xorcrypter.py \
     -k "secret" \
     -i payload.bin \
     -o encrypted.bin \
@@ -117,7 +117,7 @@ Useful when the output needs to remain binary data.
 Generates a Python `bytearray` declaration containing the transformed data.
 
 ```bash
-python main.py \
+python xorcrypter.py \
     -k "secret" \
     -i payload.bin \
     -o payload.py \
@@ -144,7 +144,7 @@ The resulting declaration can be used directly in another Python program.
 Generates a C-style unsigned byte array.
 
 ```bash
-python main.py \
+python xorcrypter.py \
     -k "secret" \
     -i payload.bin \
     -o payload.h \
@@ -241,5 +241,5 @@ The utility performs several checks before processing:
 For a complete overview of available arguments:
 
 ```bash
-python main.py --help
+python xorcrypter.py --help
 ```
