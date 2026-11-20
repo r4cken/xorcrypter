@@ -1,7 +1,5 @@
 # XOR Shellcode Encoder
 
-A lightweight Python 3 command-line utility for applying a repeating XOR key to binary files. Output is saved as a raw binary file, python bytearray or C-style array.
-
 Supports UTF-8 string keys and hexadecimal keys, with three output formats:
 
 - **Raw:** Write transformed bytes directly to a binary file.
