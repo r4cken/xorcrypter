@@ -6,11 +6,11 @@ Supports UTF-8 string keys and hexadecimal keys, with three output formats:
 
 - **Raw:** Write transformed bytes directly to a binary file.
 - **Python:** Generate a Python `bytearray` declaration.
-- **C:** Generate a C-style unsigned byte array.
+- **C:** Generate a C-style unsigned byte array declaration.
 
 Input data is processed in chunks rather than loaded entirely into memory, making the utility suitable for larger binary files.
 
-> **Disclaimer:** This utility performs a repeating-key XOR transformation. It is not cryptographically secure encryption. XOR with the same key reverses the transformation.
+> **Disclaimer:** This utility performs a repeating-key XOR transformation. It is not cryptographically secure encryption.
 
 ## Requirements
 
@@ -40,7 +40,7 @@ python main.py -x HEX_KEY -i INPUT -o OUTPUT -f FORMAT
 | `-f`, `--format` | Output format: `raw`, `python`, or `c` |
 | `-h`, `--help` | Display help and available arguments |
 
-**Key arguments are mutually exclusive.** Exactly one of `--key` or `--key-hex` must be supplied.
+**Key arguments are mutually exclusive.** Use either `--key` or `--key-hex`, not both.
 
 ## XOR Key Formats
 
@@ -100,7 +100,7 @@ Hexadecimal keys must contain a non-zero, even number of hexadecimal digits.
 
 ### Raw (`raw`)
 
-Writes the transformed bytes directly to the output file.
+Writes the transformed bytes directly to an output file.
 
 ```bash
 python main.py \
@@ -235,21 +235,6 @@ The utility performs several checks before processing:
 - Input and output paths cannot resolve to the same path.
 - Exactly one XOR key argument must be supplied.
 - Hexadecimal keys must contain valid hexadecimal characters and an even number of digits.
-
-**Note:** Existing output files will be overwritten. Make sure the output path is correct before executing the utility.
-
-## Additional Information
-
-XOR is a reversible operation:
-
-```text
-Original data ^ Key = Transformed data
-Transformed data ^ Key = Original data
-```
-
-Using the same key and applying the same operation again restores the original input.
-
-The utility does not implement key derivation, authentication, integrity checking, or cryptographic security.
 
 ## Help
 
