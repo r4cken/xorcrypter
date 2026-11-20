@@ -206,7 +206,7 @@ def main():
         total_bytes = args.input.stat().st_size
         timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
-        # Write the header and variable declaration for formatted Pythocn and C output.
+        # Write the header and variable declaration for formatted Python and C output.
         match args.format:
             case "python":
                 outfile.write(
